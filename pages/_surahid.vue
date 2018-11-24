@@ -7,7 +7,7 @@
           {{ surahDetail.number }}
         </div>
         <div class="detail__header_content">
-          <div>{{ surahDetail.name }}</div>
+          <div class="title--arabic">{{ surahDetail.name }}</div>
           <small>({{ surahDetail.name_latin }} - {{ surahDetail.translations.id.name }})</small>
         </div>
       </div>
@@ -66,69 +66,69 @@
 </template>
 
 <script>
-import { ApiPath } from '../constant/index'
-import { EventBus } from '../eventbus/index'
+import { ApiPath } from "../constant/index"
+import { EventBus } from "../eventbus/index"
 
 export default {
-  name: 'PageSurahDetail',
+  name: "PageSurahDetail",
   data() {
     return {
       surahDetail: {
         number: 0,
-        name: '',
-        name_latin: '',
-        number_of_ayah: '',
+        name: "",
+        name_latin: "",
+        number_of_ayah: "",
         text: [],
         translations: {
           id: {
-            name: '',
-            text: ''
+            name: "",
+            text: ""
           }
         }
       },
       loading: true
-    };
+    }
   },
   computed: {
     surahId() {
-      return Number(this.$route.params.surahid);
+      return Number(this.$route.params.surahid)
     },
     isValidSurah() {
-      return this.surahId > 0 && this.surahId <= 114;
+      return this.surahId > 0 && this.surahId <= 114
     },
     isHavePrev() {
-      return this.surahId > 1;
+      return this.surahId > 1
     },
     isHaveNext() {
-      return this.surahId < 114;
+      return this.surahId < 114
     }
   },
   mounted() {
-    this.fetchSurahById(this.surahId);
+    this.fetchSurahById(this.surahId)
   },
   methods: {
     getTranslation(indexAyah) {
-      return this.surahDetail.translations.id.text[indexAyah];
+      return this.surahDetail.translations.id.text[indexAyah]
     },
     fetchSurahById(id) {
       fetch(ApiPath.SURAH_BY_ID(id))
         .then(response => {
-          return response.json();
+          return response.json()
         })
         .then(data => {
-          this.surahDetail = data[this.surahId];
-          EventBus.$emit('changeSurah', this.surahDetail.name_latin)
+          this.surahDetail = data[this.surahId]
+          EventBus.$emit("changeSurah", this.surahDetail.name_latin)
           setTimeout(() => {
             this.loading = false
           }, 1000)
-        });
+        })
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/_variables.scss';
+@import "@/assets/_variables.scss";
 
 .detail {
   &__header {
@@ -147,7 +147,7 @@ export default {
       display: flex;
       align-items: center;
       height: 100px;
-      padding: .25em .5em;
+      padding: 0.25em 0.5em;
     }
     &_content {
       background-color: #000;
@@ -158,7 +158,7 @@ export default {
       border-bottom-right-radius: 4px;
       text-align: right;
       height: 100px;
-      padding: .25em .5em;
+      padding: 0.25em 0.5em;
       small {
         font-size: 1rem;
       }
@@ -196,7 +196,8 @@ export default {
 
 .ayah {
   &__arabic {
-    font-size: 2rem;
+    font-family: $font-family-arabic;
+    font-size: 34px;
     width: 80%;
     float: right;
     text-align: right;

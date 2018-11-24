@@ -36,17 +36,17 @@
 </template>
 
 <script>
-import { ApiPath } from '../constant/index'
-import { EventBus } from '../eventbus/index'
-import { __isNotEmptyString } from '../utils/index'
+import { ApiPath } from "../constant/index"
+import { EventBus } from "../eventbus/index"
+import { __isNotEmptyString } from "../utils/index"
 
 export default {
-  name: 'PageIndex',
+  name: "PageIndex",
   data() {
     return {
       surahInfoArray: [],
       loading: true
-    };
+    }
   },
   computed: {
     isHaveSource() {
@@ -54,7 +54,7 @@ export default {
     }
   },
   mounted() {
-    EventBus.$emit('changeSurah')
+    EventBus.$emit("changeSurah")
     this.fetchSurahInfo()
   },
   methods: {
@@ -63,12 +63,12 @@ export default {
     },
     fetchSurahInfo() {
       fetch(ApiPath.SURAH_INFO)
-        .then((response) => {
-          return response.json();
+        .then(response => {
+          return response.json()
         })
-        .then((data) => {
+        .then(data => {
           this.surahInfoArray = data.surah_info.map((item, idx) => {
-            return Object.assign({}, item, {index: idx+1})
+            return Object.assign({}, item, { index: idx + 1 })
           })
           if (!this.isHaveSource) {
             setTimeout(() => {
@@ -78,28 +78,31 @@ export default {
         })
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
-.surah{
-  &__title{
-    font-size: 2rem;
+@import "@/assets/main.scss";
+
+.surah {
+  &__title {
+    @extend .title--arabic;
+
     width: 80%;
     float: right;
     text-align: right;
 
-    &--latin{
+    &--latin {
       width: 100%;
       font-size: 1.5rem;
     }
   }
-  &__trans{
+  &__trans {
     text-align: right;
     font-style: italic;
     line-height: 2;
   }
-  &__count{
+  &__count {
     text-align: right;
   }
 }

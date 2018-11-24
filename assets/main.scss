@@ -1,4 +1,15 @@
-@import './variables';
+@import "./variables";
+
+// extend
+.title--arabic {
+  font-family: $font-family-arabic;
+  font-size: 3rem;
+  line-height: 1;
+}
+.ayah__arabic {
+  font-family: $font-family-arabic;
+  font-size: 34px;
+}
 
 html {
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -19,7 +30,7 @@ html {
   margin: 0;
 }
 
-a{
+a {
   color: $theme;
 }
 .button--green {
@@ -51,11 +62,11 @@ a{
   background-color: #35495e;
 }
 
-.pointer{
+.pointer {
   cursor: pointer;
 }
 
-.center{
+.center {
   text-align: center;
 }
 
@@ -102,7 +113,7 @@ a{
   animation-iteration-count: infinite;
   animation-name: skeleton;
   animation-timing-function: linear;
-  background: #F2F2F2;
+  background: #f2f2f2;
   background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
   background-size: 800px 104px;
   position: relative;

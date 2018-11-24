@@ -1,14 +1,14 @@
-const pkg = require("./package");
+const pkg = require("./package")
 const getOfflineAssets = () => {
   let res = [
-    '/favicon.ico',
-    '/favicon-32x32.png',
-    '/favicon-96x96.png',
-    '/icon-192x192.png',
-    '/data/surah-info.json'
+    "/favicon.ico",
+    "/favicon-32x32.png",
+    "/favicon-96x96.png",
+    "/icon-192x192.png",
+    "/data/surah-info.json"
   ]
-  for(let i=0; i< 114; i++) {
-    res.push(`/data/surah/${i+1}.json`)
+  for (let i = 0; i < 114; i++) {
+    res.push(`/data/surah/${i + 1}.json`)
   }
   return res
 }
@@ -28,13 +28,27 @@ module.exports = {
     ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-      { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32x32.png" },
-      { rel: "icon", type: "image/png", sizes: "96x96", href: "/favicon-96x96.png" }
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "32x32",
+        href: "/favicon-32x32.png"
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "96x96",
+        href: "/favicon-96x96.png"
+      },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css?family=Scheherazade"
+      }
     ]
   },
   manifest: {
-    name: 'Quran Offline',
-    short_name: 'Quran'
+    name: "Quran Offline",
+    short_name: "Quran"
   },
   workbox: {
     offlineAssets: getOfflineAssets()
@@ -57,17 +71,15 @@ module.exports = {
   /*
    ** Nuxt.js modules
    */
-  modules: [
-    '@nuxtjs/pwa'
-  ],
+  modules: ["@nuxtjs/pwa"],
   /*
    ** Generate multiple entry html from 1 to 114
    */
   generate: {
     routes: () => {
       let res = []
-      for(let i=0; i< 114; i++) {
-        res.push(`/${i+1}`)
+      for (let i = 0; i < 114; i++) {
+        res.push(`/${i + 1}`)
       }
       return res
     }
@@ -80,8 +92,8 @@ module.exports = {
     // extractCSS: true,
     // optimizeCSS: true,
     postcss: [
-      require('autoprefixer')({
-        browsers: ['last 2 versions']
+      require("autoprefixer")({
+        browsers: ["last 2 versions"]
       })
     ],
     /*
@@ -95,8 +107,8 @@ module.exports = {
           test: /\.(js|vue)$/,
           loader: "eslint-loader",
           exclude: /(node_modules)/
-        });
+        })
       }
-    },
+    }
   }
-};
+}
